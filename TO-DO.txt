@@ -1,0 +1,11 @@
+REST and REACT build Authentication
+    REST make user service (CRUD)
+        Add Users
+        Get Users
+        Edit Users
+        Delete Users
+    React Same
+
+add REACT Movie Page
+     with all fields take from Rest
+     Comments for that movie
