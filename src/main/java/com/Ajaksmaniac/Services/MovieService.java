@@ -58,5 +58,11 @@ public class MovieService {
 		return movie;
 	
 	}
+	public Movie delete(int id) {
+		Movie m = movieDao.findById(id).orElse(new Movie());
+		movieDao.delete(m);
+		return m;
+
+	}
 
 }

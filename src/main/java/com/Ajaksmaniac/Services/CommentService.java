@@ -22,6 +22,8 @@ public class CommentService {
     @Autowired
     UserService userService;
 
+    @Autowired
+    MovieCommentService movieCommentService;
     public List<Comment> getAllComments(){
 
         List<Comment> comments = new ArrayList<>();
@@ -69,6 +71,14 @@ public class CommentService {
 
         movieCommentDao.save(newMovieComment);
         return newComment;
+
+    }
+    public Comment delete(int id) {
+
+        movieCommentService.delete(id);
+        Comment c = commentDao.findById(id).orElse(new Comment());
+        commentDao.delete(c);
+        return c;
 
     }
 }
