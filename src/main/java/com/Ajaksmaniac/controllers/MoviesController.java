@@ -56,4 +56,13 @@ public class MoviesController {
 		return ResponseEntity.created(location).build();
 	}
 
+	@CrossOrigin(origins="http://localhost:3000")
+	@DeleteMapping(value="/delete/{id}")
+	public ResponseEntity<Object> deleteMovie(@PathVariable int id){
+		Movie savedMovie = movieService.delete(id);
+		URI location =
+				ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(savedMovie.getId()).toUri();
+		return ResponseEntity.created(location).build();
+	}
+
 }

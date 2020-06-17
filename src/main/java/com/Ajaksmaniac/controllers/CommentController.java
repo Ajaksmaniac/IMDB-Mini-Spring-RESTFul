@@ -6,9 +6,12 @@ import com.Ajaksmaniac.models.AddComment;
 import com.Ajaksmaniac.models.Comment;
 import com.Ajaksmaniac.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -37,5 +40,13 @@ public class CommentController {
 
         return commentService.save(payload);
 
+    }
+    @CrossOrigin(origins="http://localhost:3000")
+    @DeleteMapping(value="/delete/{id}")
+    public ResponseEntity<Object> deleteComment(@PathVariable int id){
+        Comment deletedComment = commentService.delete(id);
+        URI location =
+                ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(deletedComment.getComment_id()).toUri();
+        return ResponseEntity.created(location).build();
     }
 }
